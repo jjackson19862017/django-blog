@@ -1,6 +1,8 @@
 # Django-Blog Mini Project
 
 A simple blog app written using Django
+
+'[![Build Status](https://travis-ci.org/jjackson19862017/django-blog.svg?branch=master)](https://travis-ci.org/jjackson19862017/django-blog)'
  
 # Init Setup
 
@@ -90,6 +92,7 @@ Create a new app using the terminal command
 ## Post Directory
 
 create 'templates' folder
+create forms.py 'touch forms.py'
 
 ## Top Directory
 
@@ -132,3 +135,59 @@ STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'),)
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 '
+
+## models.py (Post Diectory)
+
+Add this code to the file
+
+'
+from django.utils import timezone
+
+# Create your models here.
+class Post(models.Model):
+    """
+    A Single Blog post
+    """
+    title = models.CharField(max_length=200)
+    content = models.TextField()
+    created_date= models.DateTimeField(auto_now_add=True)
+    published_date = models.DateTimeField(blank=True, null=True, default=timezone.now)
+    views = models.IntegerField(default=0)
+    tag = models.CharField(max_length=30, blank=True, null=True)
+    image = models.ImageField(upload_to="img", blank=True, null=True)
+
+    def __unicode__(self):
+        return self.title
+'
+
+after saving I got an error, about Pillow not being installed.
+
+'sudo pip3 install Pillow' fixed that.
+
+ran 'makereq' to update requirements file.
+
+## forms.py (posts Directory)
+
+Add this code to the file.
+
+This will use the models.py file we have populated with code to create a form out of it.
+
+We are only using user editable fields.
+
+'
+from django import forms
+from .models import Post
+
+class BlogPostForm(forms.ModelForm):
+    class Meta:
+        model = Post
+        fields = ('title','content','image','tag','published_date')
+'
+
+## admin.py (posts Directory)
+
+'from django.contrib import admin
+from .models import Post
+# Register your models here.
+
+admin.site.register(Post)'
