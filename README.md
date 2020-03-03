@@ -72,8 +72,63 @@ Add this code to it
 '
 language: python
 python:
-    - "3.4"
+    - "3.7"
 install: "pip3 install -r requirements.txt"
 script:
 - SECRET_KEY="whatever" ./manage.py test
+'
+
+## Fixing Travis
+
+Changed 3.7 from 3.4 otherwise it would fail.
+
+# Create a New App called 'post'
+
+Create a new app using the terminal command
+'django-admin startapp posts' --> My Shortcut is 'astart' [app name]
+
+## Post Directory
+
+create 'templates' folder
+
+## Top Directory
+
+create the following folders using the terminal commands.
+
+'mkdir media static
+cd media
+mkdir img
+cd ..
+cd static
+mkdir css img js'
+
+## Update Settings.py
+
+Because we have add posts app we need to update the settings.py
+
+Add to INSTALLED_APPS -> 'posts',
+
+In TEMPLATES -> 'DIRS'
+
+Add the following code between the square brackets
+
+'os.path.join(BASE_DIR, 'templates')'
+
+Should look something like this ->         "'DIRS': [os.path.join(BASE_DIR, 'templates')],"
+
+In TEMPLATES -> OPTIONS
+
+Add the following code between the square brackets
+
+'
+'django.template.context_processors.media',
+'
+
+At the Bottom of the file, underneath STATIC_URL, Add this:
+
+'
+STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'),)
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 '
