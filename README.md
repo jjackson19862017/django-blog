@@ -333,3 +333,13 @@ in the terminal
 'python3 manage.py createsuperuser' --> My Shortcut is 'creategod'
 
 set user name, email and password.
+
+# Heroku
+
+'sudo pip3 install dj-database-url psycopg2'
+
+'makereq'
+
+## Update settings.py
+
+See Github File
