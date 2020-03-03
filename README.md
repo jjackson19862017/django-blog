@@ -56,3 +56,24 @@ in settings.py (LINE 41)
 
 'ALLOWED_HOSTS = [os.environ.get('HOSTNAME')]'
 
+## Setting up Travis
+
+https://travis-ci.org/ - Link the Repo to this so that you can test things.
+
+Once you have linked the Repo, click on the Repo, look where it says "Build:Unknown: and Click on "Unknown".
+
+Change the drop down to Markdown and copy the code underneath it.
+
+'[![Build Status](https://travis-ci.org/jjackson19862017/django-blog.svg?branch=master)](https://travis-ci.org/jjackson19862017/django-blog)'
+
+Create a file called '.travis.yml' and place this in the blog folder
+
+Add this code to it
+'
+language: python
+python:
+    - "3.4"
+install: "pip3 install -r requirements.txt"
+script:
+- SECRET_KEY="whatever" ./manage.py test
+'
