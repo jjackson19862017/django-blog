@@ -283,3 +283,53 @@ urlpatterns = [
     url(r'^(?P<pk>\d+)/edit/$', create_or_edit_post, name='edit_post')
 ]
 '
+
+# Creating Templates
+
+Create a folder called 'templates' in the top level directory.
+
+'mkdir templates
+cd templates
+touch base.html'
+
+## base.html (templates directory)
+
+See File on Github
+
+## custom.css (static/css directory)
+
+See File on Github
+
+## blogposts.html (posts/templates directory)
+
+See File on Github
+
+## postdetail.html (posts/templates directory)
+
+See File on Github
+
+## Bootstrapping Forms
+
+Use 'sudo pip3 install django_forms_bootstrap'
+
+to install custom django forms for bootstrap.
+
+## settings.py (blog directory)
+
+Add the following LINE to INSTALLED_APPS
+
+'
+'django_forms_bootstrap',
+'
+
+## blogpostform.html (posts/templates directory)
+
+See File on Github
+
+# Create Superuser
+
+in the terminal
+
+'python3 manage.py createsuperuser' --> My Shortcut is 'creategod'
+
+set user name, email and password.
