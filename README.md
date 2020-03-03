@@ -343,3 +343,17 @@ set user name, email and password.
 ## Update settings.py
 
 See Github File
+
+# Hosting Static Files on Heroku
+
+'sudo pip3 install whitenoise'
+
+'makereq'
+
+## settings.py
+
+MIDDLEWARE
+
+'
+'whitenoise.middleware.WhiteNoiseMiddleware',
+'
